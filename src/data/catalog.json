@@ -1,0 +1,152 @@
+[
+  {
+    "id": "m-ministering-with-microphone",
+    "src": "/images/ministering-with-microphone.webp",
+    "w": 810,
+    "h": 1080,
+    "title": "Ministering with the microphone",
+    "caption": "Pastor Everest Chinakwaeze ministering to worshippers at Ebenezer's Place.",
+    "alt": "Pastor Everest Chinakwaeze ministering with a microphone to worshippers at Ebenezer's Place International Ministry, Ughelli",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-kneeling-in-prayer",
+    "src": "/images/kneeling-in-prayer.webp",
+    "w": 960,
+    "h": 1280,
+    "title": "Kneeling in prayer",
+    "caption": "A moment of prayer on the floor of the sanctuary during ministration.",
+    "alt": "Pastor Everest Chinakwaeze in a blue suit kneeling with a microphone while praying for a worshipper at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-among-the-congregation",
+    "src": "/images/among-the-congregation.webp",
+    "w": 960,
+    "h": 1280,
+    "title": "Among the congregation",
+    "caption": "Ministering from within the congregation during an Encounter Service.",
+    "alt": "Pastor Everest Chinakwaeze in a blue suit ministering among the congregation at Ebenezer's Place International Ministry, Ughelli",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-laying-on-of-hands",
+    "src": "/images/laying-on-of-hands.webp",
+    "w": 960,
+    "h": 1280,
+    "title": "Laying on of hands",
+    "caption": "Praying for a worshipper with the laying on of hands.",
+    "alt": "Pastor Everest Chinakwaeze laying hands on a worshipper in prayer at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-prayer-for-a-worshipper",
+    "src": "/images/prayer-for-a-worshipper.webp",
+    "w": 810,
+    "h": 1080,
+    "title": "Prayer for a worshipper",
+    "caption": "A time of personal prayer and ministration at the church in Ughelli.",
+    "alt": "Pastor Everest Chinakwaeze praying for a woman in colourful attire at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-ministration-time",
+    "src": "/images/ministration-time.webp",
+    "w": 810,
+    "h": 1080,
+    "title": "Ministration time",
+    "caption": "Ministering to a worshipper during the service.",
+    "alt": "Pastor Everest Chinakwaeze with a microphone ministering to a worshipper during a service at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-ministering-at-the-pulpit",
+    "src": "/images/ministering-at-the-pulpit.webp",
+    "w": 960,
+    "h": 1280,
+    "title": "Ministering at the pulpit",
+    "caption": "Ministering on the platform beside the EP1 pulpit sign.",
+    "alt": "Ministration on the platform beside the EP1 Ebenezer's Place pulpit sign at Ebenezer's Place International Ministry, Ughelli",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-worship-in-white",
+    "src": "/images/worship-in-white.webp",
+    "w": 1100,
+    "h": 1466,
+    "title": "A service in white",
+    "caption": "Worshippers dressed in white during a time of prayer.",
+    "alt": "Pastor Everest Chinakwaeze in white attire ministering with a microphone during a prayer service at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-praying-over-the-congregation",
+    "src": "/images/praying-over-the-congregation.webp",
+    "w": 1100,
+    "h": 1955,
+    "title": "Praying over the congregation",
+    "caption": "The congregation in white with hands raised in prayer.",
+    "alt": "Congregation in white with hands on their heads in prayer while Pastor Everest Chinakwaeze ministers at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "m-prayer-with-the-bible",
+    "src": "/images/prayer-with-the-bible.webp",
+    "w": 1100,
+    "h": 1453,
+    "title": "Prayer with the Word",
+    "caption": "Ministering in prayer with the Holy Bible beside.",
+    "alt": "Pastor Everest Chinakwaeze in white kneeling in prayer with a microphone and the Holy Bible beside him at Ebenezer's Place International Ministry",
+    "category": "Ministration"
+  },
+  {
+    "id": "pastor-everest",
+    "src": "/images/pastor-everest-chinakwaeze.webp",
+    "w": 900,
+    "h": 1200,
+    "title": "Pastor Everest Chinakwaeze",
+    "caption": "Pastor Everest Chinakwaeze ministering at Ebenezer's Place International Ministry, Ughelli.",
+    "alt": "Pastor Everest Chinakwaeze ministering with a microphone at Ebenezer's Place International Ministry in Ughelli, Delta State",
+    "category": "Pastor"
+  },
+  {
+    "id": "anniversary",
+    "src": "/images/flyer-3-years-anniversary.webp",
+    "w": 1400,
+    "h": 787,
+    "title": "3 Years Anniversary Service: The Stone of Help",
+    "caption": "Thursday 3rd and Friday 4th December 2026 at 5:00 PM with Pastor Everest Chinakwaeze and guest speaker Pastor Innocent Micheal.",
+    "alt": "Flyer for the 3 Years Anniversary Service, theme The Stone of Help, with Pastor Everest Chinakwaeze and guest speaker Pastor Innocent Micheal",
+    "category": "Events"
+  },
+  {
+    "id": "durable-fruitfulness",
+    "src": "/images/flyer-durable-fruitfulness.webp",
+    "w": 1400,
+    "h": 787,
+    "title": "Encounter Service: Durable Fruitfulness",
+    "caption": "Encounter Service number 72 with Pastor Everest Chinakwaeze, 24th September 2026, 6:00 PM.",
+    "alt": "Flyer for Encounter Service number 72, Durable Fruitfulness, with Pastor Everest Chinakwaeze",
+    "category": "Encounter Service"
+  },
+  {
+    "id": "october-holiness",
+    "src": "/images/flyer-october-possibilities-through-holiness.webp",
+    "w": 1400,
+    "h": 787,
+    "title": "October: Month of Possibilities Through Holiness",
+    "caption": "The monthly theme for October at Ebenezer's Place International.",
+    "alt": "Welcome to October, Month of Possibilities Through Holiness, flyer from Ebenezer's Place International with Pastor Everest Chinakwaeze",
+    "category": "Monthly themes"
+  },
+  {
+    "id": "possibilities-praise",
+    "src": "/images/flyer-possibilities-through-praise.webp",
+    "w": 1000,
+    "h": 1000,
+    "title": "Encounter Service: Possibilities Through Praise",
+    "caption": "Welcome to Encounter Service with the theme Possibilities Through Praise.",
+    "alt": "Welcome to Encounter Service, Possibilities Through Praise, flyer from Ebenezer's Place International with Pastor Everest Chinakwaeze",
+    "category": "Encounter Service"
+  }
+]
