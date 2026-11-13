@@ -2,11 +2,14 @@ import { useSeo, SITE_URL } from '../lib/seo';
 import { events, isUpcoming } from '../data/events';
 import site from '../data/site.json';
 import EventCard from '../components/EventCard';
+import CardStack from '../components/CardStack';
+import { useGallery, eventItems } from '../lib/gallery';
 import Reveal from '../components/Reveal';
 
 export default function Events() {
   const upcoming = events.filter(isUpcoming);
   const past = events.filter((e) => !isUpcoming(e));
+  const stack = eventItems(past, useGallery());
   useSeo('/events', {
     jsonLd: upcoming.map((e) => ({
       '@context': 'https://schema.org', '@type': 'Event', name: e.title,
@@ -31,7 +34,9 @@ export default function Events() {
       )}
 
       <section className="mt-24" aria-labelledby="past">
-        <h2 id="past" className="mb-10 text-3xl font-extrabold">Previous services</h2>
+        <h2 id="past" className="text-3xl font-extrabold">Previous services</h2>
+        <p className="mb-2 mt-2 text-deep/70">Swipe through recent services, then read the details below.</p>
+        <div className="-mx-5 mb-16"><CardStack items={stack} /></div>
         <div className="grid gap-16">{past.map((e) => <Reveal key={e.slug}><EventCard e={e} /></Reveal>)}</div>
       </section>
     </div>

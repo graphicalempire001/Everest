@@ -24,7 +24,8 @@ export default function Contact() {
           <h2 className="text-2xl font-extrabold">Stay connected</h2>
           <p className="mt-2">Follow Pastor Everest on Facebook for live services and updates.</p>
           <div className="mt-5"><PressButton href={site.facebookUrl} variant="facebook" size="lg"><FbIcon />Follow on Facebook</PressButton></div>
-          {site.phone && <p className="mt-4">Call: <a className="font-bold text-royal underline" href={`tel:${site.phone}`}>{site.phone}</a></p>}
+          <p className="mt-6">Call Pastor Everest: <a className="font-bold text-royal underline underline-offset-4" href={`tel:${site.phone}`}>{site.phoneDisplay}</a></p>
+          <div className="mt-4"><PressButton href={`tel:${site.phone}`} size="lg">Call now</PressButton></div>
         </section>
       </div>
     </div>

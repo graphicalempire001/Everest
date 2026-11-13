@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import staticItems from '../data/catalog.json';
+import type { EventItem } from '../data/events';
 import { supabase, publicUrl } from './supabase';
 
 export interface GItem { id: string; src: string; w: number; h: number; title: string; caption: string; alt: string; category: string; video?: string }
@@ -20,3 +21,7 @@ export function useGallery(): GItem[] {
   }, []);
   return [...remote, ...(staticItems as GItem[])];
 }
+
+/** Event flyers as gallery items (for the stacked cards). */
+export const eventItems = (list: EventItem[], all: GItem[]): GItem[] =>
+  list.map((e) => { const m = all.find((g) => g.src === e.flyer); return { id: e.slug, src: e.flyer, w: m?.w ?? 1400, h: m?.h ?? 787, title: e.title, caption: [e.dateLabel, e.time].filter(Boolean).join(', '), alt: e.flyerAlt, category: 'Services' }; });

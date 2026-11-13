@@ -11,7 +11,7 @@ export default function Scripture() {
   useEffect(() => { const id = setInterval(() => setI((n) => (n + 1) % verses.length), 8000); return () => clearInterval(id); }, [i]);
   const v = verses[i];
   return (
-    <section className="bg-royal py-20 text-center text-paper" aria-label="Scripture">
+    <div className="text-center text-paper" aria-label="Scripture">
       <div className="mx-auto max-w-3xl px-5">
         <blockquote key={i} className="rise min-h-[11rem] md:min-h-[9rem]">
           <p className="font-display text-2xl italic leading-snug md:text-4xl">“{v.t}”</p>
@@ -25,6 +25,6 @@ export default function Scripture() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import site from '../data/site.json';
 import PressButton, { FbIcon } from './PressButton';
 import Related from './Related';
+import { initSmooth, smooth } from '../lib/smooth';
 
 const links = [
   { to: '/', label: 'Home' }, { to: '/about', label: 'About' }, { to: '/events', label: 'Services' },
@@ -14,6 +15,7 @@ export default function Layout() {
   const [hidden, setHidden] = useState(false);
   const { pathname } = useLocation();
 
+  useEffect(() => { initSmooth(); }, []);
   useEffect(() => { setOpen(false); setHidden(false); window.scrollTo(0, 0); }, [pathname]);
 
   // Slides away while scrolling down, returns the moment you scroll up
@@ -33,6 +35,7 @@ export default function Layout() {
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) smooth.stop(); else smooth.start();
     const esc = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', esc);
     return () => { window.removeEventListener('keydown', esc); document.body.style.overflow = ''; };
@@ -64,7 +67,7 @@ export default function Layout() {
       </header>
 
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="fixed inset-0 z-40 flex flex-col overflow-auto bg-white px-6 pb-10 pt-28 lg:hidden">
+        <nav id="mobile-nav" aria-label="Mobile" className="fixed inset-0 z-40 flex flex-col overflow-auto bg-white px-6 pb-10 pt-28 lg:hidden" data-lenis-prevent>
           <div className="space-y-1">
             {links.map((l) => (
               <NavLink key={l.to} to={l.to} end onClick={() => setOpen(false)}
@@ -81,13 +84,14 @@ export default function Layout() {
       <main id="main" className={pathname === '/' ? '' : 'pt-[4.5rem]'}><Outlet /></main>
       {['/about', '/events', '/catalog', '/contact'].includes(pathname) && <Related current={pathname} />}
 
-      <footer className="mt-24 bg-deep text-paper">
+      <footer className={`relative bg-deep text-paper ${pathname === '/' ? '' : 'mt-24'}`}>
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-4">
           <div className="md:col-span-2">
             <img src="/images/ep1-logo.webp" width={512} height={512} alt="EP1 Ebenezer's Place logo" loading="lazy" className="mb-4 h-16 w-16 rounded-xl bg-white object-contain p-1.5" />
             <p className="font-display text-xl font-bold">Pastor Everest Chinakwaeze</p>
             <p className="mt-2 max-w-sm text-paper/75">Lead Pastor, {site.church}. {site.tagline}.</p>
             <address className="mt-4 max-w-sm not-italic text-paper/75">{site.address}.</address>
+            <p className="mt-3 text-paper/75">Call: <a className="font-semibold text-paper underline underline-offset-4 hover:text-gold" href={`tel:${site.phone}`}>{site.phoneDisplay}</a></p>
           </div>
           <div>
             <p className="font-display text-lg font-bold">Navigation</p>
@@ -105,7 +109,7 @@ export default function Layout() {
             </ul>
           </div>
         </div>
-        <p className="bg-black/25 px-5 py-5 text-center text-sm text-paper/60">© {new Date().getFullYear()} {site.church}. All rights reserved.</p>
+        <p className="bg-black/25 px-5 py-5 text-center text-sm text-paper/60">© {new Date().getFullYear()} Pastor Everest Chinakwaeze. All rights reserved. All photos and content on this site belong to Pastor Everest Chinakwaeze.</p>
       </footer>
     </>
   );

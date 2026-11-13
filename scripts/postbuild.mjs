@@ -51,7 +51,7 @@ for (const r of routes) {
     isPartOf: { '@id': `${site.siteUrl}/#website` },
     about: { '@id': `${site.siteUrl}/#${r.path === '/events' || r.path === '/contact' ? 'church' : 'pastor'}` },
     ...(r.path === '/about' ? { mainEntity: { '@id': `${site.siteUrl}/#pastor` } } : {}),
-    publisher: { '@id': `${site.siteUrl}/#church` },
+    publisher: { '@id': `${site.siteUrl}/#pastor` }, author: { '@id': `${site.siteUrl}/#pastor` }, copyrightHolder: { '@id': `${site.siteUrl}/#pastor` }, copyrightYear: new Date().getFullYear(),
     primaryImageOfPage: { '@type': 'ImageObject', url: site.siteUrl + r.image, width: 1200, height: 630, caption: r.imageAlt },
     breadcrumb: { '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: site.siteUrl + (c.path === '/' ? '/' : c.path) })) },
   };
