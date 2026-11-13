@@ -1,17 +1,11 @@
 import PressButton from '../components/PressButton';
 import ScrollText from '../components/ScrollText';
-import { useSeo, SITE_URL, breadcrumbs } from '../lib/seo';
-import { faqs } from '../data/faq';
+import { useSeo } from '../lib/seo';
+import faqs from '../data/faq.json';
 import site from '../data/site.json';
 
 export default function About() {
-  useSeo('/about', {
-    jsonLd: [
-      { '@context': 'https://schema.org', '@type': 'ProfilePage', name: 'Who is Pastor Everest Chinakwaeze?', url: `${SITE_URL}/about`, mainEntity: { '@id': `${SITE_URL}/#pastor` } },
-      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
-      breadcrumbs([{ name: 'Home', path: '/' }, { name: 'About Pastor Everest Chinakwaeze', path: '/about' }]),
-    ],
-  });
+  useSeo('/about');
   return (
     <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1fr_1.3fr] md:py-24">
       <img src="/images/pastor-everest-chinakwaeze.webp" width={900} height={1200} loading="eager"

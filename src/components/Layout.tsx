@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import site from '../data/site.json';
 import PressButton, { FbIcon } from './PressButton';
+import Related from './Related';
 
 const links = [
   { to: '/', label: 'Home' }, { to: '/about', label: 'About' }, { to: '/events', label: 'Services' },
@@ -78,6 +79,7 @@ export default function Layout() {
       )}
 
       <main id="main" className={pathname === '/' ? '' : 'pt-[4.5rem]'}><Outlet /></main>
+      {['/about', '/events', '/catalog', '/contact'].includes(pathname) && <Related current={pathname} />}
 
       <footer className="mt-24 bg-deep text-paper">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-4">

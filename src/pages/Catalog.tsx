@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useSeo, SITE_URL, breadcrumbs } from '../lib/seo';
+import { useSeo, SITE_URL } from '../lib/seo';
 import { useGallery, type GItem } from '../lib/gallery';
 import PressButton from '../components/PressButton';
 import Reveal from '../components/Reveal';
@@ -12,7 +12,7 @@ export default function Catalog() {
   const [cur, setCur] = useState<Item | null>(null);
 
   useSeo('/catalog', {
-    jsonLd: [breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Photo catalog', path: '/catalog' }]), {
+    jsonLd: [{
       '@context': 'https://schema.org', '@type': 'ImageGallery',
       name: 'Photo catalog of Pastor Everest Chinakwaeze', url: `${SITE_URL}/catalog`,
       about: { '@id': `${SITE_URL}/#pastor` }, publisher: { '@id': `${SITE_URL}/#church` },

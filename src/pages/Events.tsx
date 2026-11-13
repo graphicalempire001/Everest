@@ -1,4 +1,4 @@
-import { useSeo, SITE_URL, breadcrumbs } from '../lib/seo';
+import { useSeo, SITE_URL } from '../lib/seo';
 import { events, isUpcoming } from '../data/events';
 import site from '../data/site.json';
 import EventCard from '../components/EventCard';
@@ -8,14 +8,14 @@ export default function Events() {
   const upcoming = events.filter(isUpcoming);
   const past = events.filter((e) => !isUpcoming(e));
   useSeo('/events', {
-    jsonLd: [breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Services and events', path: '/events' }]), ...upcoming.map((e) => ({
+    jsonLd: upcoming.map((e) => ({
       '@context': 'https://schema.org', '@type': 'Event', name: e.title,
       description: e.theme ? `${e.title}. Theme: ${e.theme}.` : e.title,
       startDate: e.start, eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', eventStatus: 'https://schema.org/EventScheduled',
       image: SITE_URL + e.flyer,
       location: { '@type': 'Place', name: site.church, hasMap: site.mapsUrl, address: { '@type': 'PostalAddress', streetAddress: '72 Market Road, opposite Voke Star Filling Station, beside Zenith Bank', addressLocality: 'Ughelli', addressRegion: 'Delta State', addressCountry: 'NG' } },
       organizer: { '@id': `${SITE_URL}/#church` }, performer: { '@id': `${SITE_URL}/#pastor` },
-    }))],
+    })),
   });
 
   return (

@@ -25,6 +25,8 @@ export function useSeo(path: string, opts: { noindex?: boolean; jsonLd?: object[
     if (r?.keywords) meta('keywords', r.keywords);
     meta('robots', opts.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1');
     setTag('link[rel="canonical"]', () => { const l = document.createElement('link'); l.setAttribute('rel', 'canonical'); return l; }, 'href', url);
+    if (r?.image) { const img = SITE_URL + r.image; meta('og:image', img, 'property'); meta('twitter:image', img); meta('og:image:alt', r.imageAlt, 'property'); meta('twitter:image:alt', r.imageAlt); }
+    meta('og:type', r?.ogType ?? 'website', 'property');
     meta('og:title', title, 'property'); meta('og:description', description, 'property'); meta('og:url', url, 'property');
     meta('twitter:title', title); meta('twitter:description', description);
     const added = (JSON.parse(jsonLd) as object[]).map((o) => {

@@ -18,6 +18,7 @@ if (SB && KEY) {
     if (res.ok) remote = (await res.json()).map((i) => ({ src: `${SB}/storage/v1/object/public/gallery/${i.image_path}`, title: i.title, caption: i.caption || '' }));
   } catch { /* sitemap still builds without them */ }
 }
+const faqs = JSON.parse(fs.readFileSync(path.join(root, 'src/data/faq.json'), 'utf8'));
 const base = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
@@ -34,6 +35,29 @@ for (const r of routes) {
     .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${esc(r.title)}$2`)
     .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${esc(r.description)}$2`)
     .replace(/<noscript>.*?<\/noscript>/s, `<noscript><h1>${esc(r.h1)}</h1>${r.body || `<p>${esc(r.description)}</p>`}</noscript>`);
+  html = html
+    .replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${site.siteUrl}${r.image}$2`)
+    .replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${site.siteUrl}${r.image}$2`)
+    .replace(/(<meta property="og:image:alt" content=")[^"]*(")/, `$1${esc(r.imageAlt)}$2`)
+    .replace(/(<meta name="twitter:image:alt" content=")[^"]*(")/, `$1${esc(r.imageAlt)}$2`)
+    .replace(/(<meta property="og:type" content=")[^"]*(")/, `$1${r.ogType}$2`);
+  if (r.ogType === 'profile') html = html.replace('</head>', `<meta property="profile:first_name" content="Everest" />\n  <meta property="profile:last_name" content="Chinakwaeze" />\n  </head>`);
+  // One WebPage node per directory, tied to the website, the pastor and the church
+  const types = { '/': 'WebPage', '/about': 'ProfilePage', '/events': 'CollectionPage', '/catalog': 'CollectionPage', '/contact': 'ContactPage' };
+  const idUrl = site.siteUrl + (r.path === '/' ? '/' : r.path);
+  const crumbs = [{ name: 'Home', path: '/' }, ...(r.path === '/' ? [] : [{ name: r.h1, path: r.path }])];
+  const page = {
+    '@context': 'https://schema.org', '@type': types[r.path], '@id': `${idUrl}#webpage`, url: idUrl, name: r.title, description: r.description, inLanguage: 'en-NG',
+    isPartOf: { '@id': `${site.siteUrl}/#website` },
+    about: { '@id': `${site.siteUrl}/#${r.path === '/events' || r.path === '/contact' ? 'church' : 'pastor'}` },
+    ...(r.path === '/about' ? { mainEntity: { '@id': `${site.siteUrl}/#pastor` } } : {}),
+    publisher: { '@id': `${site.siteUrl}/#church` },
+    primaryImageOfPage: { '@type': 'ImageObject', url: site.siteUrl + r.image, width: 1200, height: 630, caption: r.imageAlt },
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: site.siteUrl + (c.path === '/' ? '/' : c.path) })) },
+  };
+  const blocks = [page];
+  if (r.path === '/about') blocks.push({ '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${idUrl}#faq`, isPartOf: { '@id': `${idUrl}#webpage` }, mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
+  html = html.replace('</head>', blocks.map((b) => `<script type="application/ld+json">${JSON.stringify(b).replace(/</g, '\\u003c')}</script>`).join('\n  ') + '\n  </head>');
   if (r.path !== '/') {
     fs.mkdirSync(path.join(dist, r.path), { recursive: true });
     fs.writeFileSync(path.join(dist, r.path, 'index.html'), html);

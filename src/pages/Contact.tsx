@@ -1,9 +1,9 @@
-import { useSeo, breadcrumbs } from '../lib/seo';
+import { useSeo } from '../lib/seo';
 import site from '../data/site.json';
 import PressButton, { FbIcon } from '../components/PressButton';
 
 export default function Contact() {
-  useSeo('/contact', { jsonLd: [breadcrumbs([{ name: 'Home', path: '/' }, { name: 'Visit', path: '/contact' }])] });
+  useSeo('/contact');
   return (
     <div className="mx-auto max-w-3xl px-5 py-16 md:py-24">
       <h1 className="text-5xl font-extrabold md:text-6xl">Visit Ebenezer’s Place</h1>
