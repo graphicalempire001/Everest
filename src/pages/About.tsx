@@ -1,5 +1,6 @@
 import PressButton from '../components/PressButton';
 import CardStack from '../components/CardStack';
+import Standing from '../components/Standing';
 import { useGallery } from '../lib/gallery';
 import ScrollText from '../components/ScrollText';
 import { useSeo } from '../lib/seo';
@@ -12,9 +13,7 @@ export default function About() {
   return (
     <>
     <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1fr_1.3fr] md:py-24">
-      <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" width={724} height={478} loading="eager"
-        alt="Pastor Everest Chinakwaeze at Ebenezer's Place International Ministry in Ughelli"
-        className="morph aspect-[4/5] w-full object-cover object-[68%_14%] md:sticky md:top-28 md:self-start" />
+      <Standing className="md:sticky md:top-28 md:self-start" />
       <div className="max-w-xl">
         <h1 className="text-5xl font-extrabold md:text-6xl">About Pastor Everest Chinakwaeze</h1>
         <p className="mt-6">Pastor Everest Chinakwaeze, also addressed as Evang. Everest Chinakwaeze, is the Lead Pastor and General Overseer of {site.church} (EPI), a pastor in Ughelli, Delta State, Nigeria.</p>

@@ -30,9 +30,9 @@ export default function Hero() {
           {/* Photo panel with the gold name tag (tag sits on the background, never on his face) */}
           <div className="relative">
             <div className="relative aspect-[4/3.3] overflow-hidden rounded-[1.75rem] shadow-[0_34px_50px_-24px_rgba(0,0,0,.85)] md:aspect-auto md:h-[min(66svh,640px)]">
-              <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" width={724} height={478} fetchPriority="high"
+              <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" width={1128} height={1232} fetchPriority="high"
                 alt="Pastor Everest Chinakwaeze smiling and holding a microphone at Ebenezer's Place International Ministry, Ughelli"
-                className="hero-img h-full w-full object-cover object-[74%_18%]" />
+                className="hero-img h-full w-full object-cover object-[50%_22%]" />
             </div>
             <div className="rv-fade torn absolute -top-4 left-3 z-20 -rotate-[7deg] bg-gold px-5 py-3 text-center text-xs font-extrabold uppercase leading-tight tracking-wide text-deep shadow-lg md:-left-3 md:text-sm" style={d(900)} aria-hidden="true">Lead Pastor<br />Ughelli, Delta State</div>
           </div>

@@ -10,6 +10,7 @@ import CardStack from '../components/CardStack';
 import EventCard from '../components/EventCard';
 import PressButton, { FbIcon } from '../components/PressButton';
 import Reveal from '../components/Reveal';
+import Standing from '../components/Standing';
 
 export default function Home() {
   useSeo('/');
@@ -24,7 +25,7 @@ export default function Home() {
       <StackCard z={10} first>
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-[1fr_1.2fr] md:gap-16" aria-labelledby="welcome">
           <Reveal className="mx-auto w-full max-w-md">
-            <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" alt="Pastor Everest Chinakwaeze, Lead Pastor of Ebenezer's Place International Ministry" loading="lazy" className="morph aspect-[4/5] w-full object-cover object-[68%_14%]" />
+            <Standing />
           </Reveal>
           <Reveal delay={120}>
             <p className="text-sm font-bold uppercase tracking-[.2em] text-royal">Welcome</p>
