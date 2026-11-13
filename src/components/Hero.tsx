@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import PressButton from './PressButton';
+import { useStickyTop } from '../lib/useStickyTop';
 import site from '../data/site.json';
 
-/** Hero: his photo blended into the navy, name on the faded side (never over his face). Text reveals only once fonts are ready. */
+/** Hero modelled on a "meet our minister" flyer: photo panel, dark text card, gold name tag and a service strip. */
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
   const [ready, setReady] = useState(false);
+  useStickyTop(root);
 
+  // Text reveals only once fonts are ready, so nothing flashes before it animates
   useEffect(() => {
     let done = false;
     const go = () => { if (!done) { done = true; setReady(true); } };
@@ -15,52 +18,53 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    let raf = 0;
-    const on = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => { raf = 0; root.current?.style.setProperty('--p', String(Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.8))))); });
-    };
-    on();
-    window.addEventListener('scroll', on, { passive: true });
-    return () => { window.removeEventListener('scroll', on); cancelAnimationFrame(raf); };
-  }, []);
-
   const d = (n: number) => ({ ['--d' as string]: n });
   return (
-    <section ref={root} style={{ ['--p' as string]: 0 }} className={`hero sticky top-0 isolate h-[100svh] min-h-[620px] overflow-hidden bg-deep text-paper ${ready ? 'is-ready' : ''}`}>
-      <div className="pattern absolute inset-0 -z-10 opacity-40" aria-hidden="true" />
-      <div className="absolute -left-32 top-1/4 -z-10 h-[30rem] w-[30rem] rounded-full bg-royal/35 blur-3xl" aria-hidden="true" />
+    <section ref={root} className={`hero sticky top-0 isolate overflow-hidden bg-deep text-paper ${ready ? 'is-ready' : ''}`}>
+      <img src="/images/hero-bg.webp" alt="" aria-hidden="true" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-deep via-deep/90 to-royal/45" />
+      <div className="pattern absolute inset-0 -z-10 opacity-30" aria-hidden="true" />
 
-      <div className="hero-body relative flex h-full w-full flex-col pb-8 pt-[5.5rem] md:justify-center md:gap-10 md:pb-0 md:pt-24">
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
-          <div className="max-w-[32rem]">
-            <p className="rv-track text-[11px] font-semibold uppercase text-gold sm:text-sm">{site.church}</p>
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-5 pb-14 pt-24">
+        <div className="grid items-center gap-0 md:grid-cols-[.92fr_1.08fr] md:gap-8">
+          {/* Photo panel with the gold name tag (tag sits on the background, never on his face) */}
+          <div className="relative">
+            <div className="relative aspect-[4/3.3] overflow-hidden rounded-[1.75rem] shadow-[0_34px_50px_-24px_rgba(0,0,0,.85)] md:aspect-auto md:h-[min(66svh,640px)]">
+              <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" width={724} height={478} fetchPriority="high"
+                alt="Pastor Everest Chinakwaeze smiling and holding a microphone at Ebenezer's Place International Ministry, Ughelli"
+                className="hero-img h-full w-full object-cover object-[74%_18%]" />
+            </div>
+            <div className="rv-fade torn absolute -top-4 left-3 z-20 -rotate-[7deg] bg-gold px-5 py-3 text-center text-xs font-extrabold uppercase leading-tight tracking-wide text-deep shadow-lg md:-left-3 md:text-sm" style={d(900)} aria-hidden="true">Lead Pastor<br />Ughelli, Delta State</div>
+          </div>
+
+          {/* Dark text card */}
+          <div className="relative z-10 -mt-8 rounded-[1.75rem] bg-[#080f3c]/95 p-7 shadow-[0_34px_50px_-24px_rgba(0,0,0,.9)] md:mt-0 md:p-10">
+            <p className="rv-track text-[11px] font-semibold uppercase text-gold sm:text-xs">Meet the pastor</p>
             <h1 className="mt-4" aria-label="Pastor Everest Chinakwaeze">
-              <span className="rv-line" aria-hidden="true"><span className="font-script text-2xl italic text-gold sm:text-3xl" style={d(250)}>Pastor</span></span>
-              <span className="rv-line" aria-hidden="true"><span className="font-classic text-[clamp(2rem,9vw,5rem)] font-semibold leading-[1.08] tracking-wide" style={d(420)}>Everest</span></span>
-              <span className="rv-line" aria-hidden="true"><span className="font-classic text-[clamp(2rem,9vw,5rem)] font-semibold leading-[1.08] tracking-wide" style={d(580)}>Chinakwaeze</span></span>
+              <span className="rv-line" aria-hidden="true"><span className="block font-classic text-[clamp(1.5rem,6.6vw,2.6rem)] font-semibold leading-[1.1] tracking-wide text-white" style={d(300)}>Pastor Everest</span></span>
+              <span className="rv-line" aria-hidden="true"><span className="block font-classic text-[clamp(1.5rem,6.6vw,2.6rem)] font-semibold leading-[1.1] tracking-wide text-gold" style={d(450)}>Chinakwaeze</span></span>
             </h1>
-            <p className="rv-fade mt-4 max-w-[21rem] text-base leading-relaxed text-paper/90 sm:max-w-md sm:text-xl" style={d(1000)}>Lead Pastor in Ughelli, Delta State. Come as you are, and encounter God in a place of divine help.</p>
+            <div className="rv-fade mt-5 h-px w-full bg-paper/60" style={d(700)} aria-hidden="true" />
+            <p className="rv-fade mt-5 text-base leading-relaxed text-paper/90 sm:text-lg" style={d(850)}>
+              <strong className="font-semibold text-gold">Pastor Everest Chinakwaeze</strong> is the Lead Pastor and General Overseer of {site.church} (EPI) in Ughelli, Delta State, Nigeria.
+            </p>
+            <p className="rv-fade mt-3 text-base leading-relaxed text-paper/80 sm:text-lg" style={d(1000)}>Come as you are, and encounter God in a place of divine help.</p>
+            <div className="rv-fade mt-7 grid grid-cols-2 gap-3 sm:flex" style={d(1150)}>
+              <PressButton to="/events" className="!px-3 !py-3.5 sm:!px-7">See services</PressButton>
+              <PressButton to="/contact" variant="ghost" className="!px-3 !py-3.5 sm:!px-7">Plan your visit</PressButton>
+            </div>
           </div>
         </div>
 
-        {/* His photo: on phones it sits between the text and the buttons; on larger screens it fills the right side */}
-        <div className="relative my-3 min-h-0 flex-1 md:absolute md:inset-y-0 md:right-0 md:my-0 md:flex md:w-[66%] md:flex-none md:items-center">
-          <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" width={724} height={478} fetchPriority="high"
-            alt="Pastor Everest Chinakwaeze smiling and holding a microphone at Ebenezer's Place International Ministry, Ughelli"
-            className="hero-photo h-full w-full object-cover object-[70%_16%] md:h-auto md:object-contain" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
-          <div className="rv-fade grid grid-cols-2 gap-3 md:flex md:gap-4" style={d(1250)}>
-            <PressButton to="/events" size="lg" className="!px-3 !py-3.5 !text-base md:!px-8 md:!py-4 md:!text-lg">See services</PressButton>
-            <PressButton to="/contact" variant="ghost" size="lg" className="!px-3 !py-3.5 !text-base md:!px-8 md:!py-4 md:!text-lg">Plan your visit</PressButton>
+        {/* Service strip, like the date strip on the flyer */}
+        <div className="rv-fade mt-8 flex justify-center drop-shadow-[0_16px_20px_rgba(0,0,0,.45)]" style={d(1350)}>
+          <div className="torn bg-paper px-8 py-4 text-center text-deep">
+            <p className="font-display text-lg font-extrabold md:text-xl"><span className="text-[#c98a00]">Encounter Service</span> | Thursdays 6:00 PM</p>
+            <p className="text-sm font-bold uppercase tracking-wide">{site.church}</p>
+            <p className="text-xs text-deep/70">72 Market Road, Ughelli, Delta State</p>
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs tracking-widest text-paper/60 md:flex" aria-hidden="true">SCROLL DOWN<span className="cue h-10 w-px bg-gold" /></div>
     </section>
   );
 }

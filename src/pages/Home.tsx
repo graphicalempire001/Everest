@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <Hero />
 
-      <StackCard z={10}>
+      <StackCard z={10} first>
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-[1fr_1.2fr] md:gap-16" aria-labelledby="welcome">
           <Reveal className="mx-auto w-full max-w-md">
             <img src="/images/pastor-everest-smiling-at-the-pulpit.webp" alt="Pastor Everest Chinakwaeze, Lead Pastor of Ebenezer's Place International Ministry" loading="lazy" className="morph aspect-[4/5] w-full object-cover object-[68%_14%]" />
@@ -41,9 +41,9 @@ export default function Home() {
         </dl>
       </StackCard>
 
-      <StackCard z={20} bg="bg-royal"><div className="mx-auto max-w-3xl px-5"><Scripture /></div></StackCard>
+      <StackCard z={12} bg="bg-royal"><div className="mx-auto max-w-3xl px-5"><Scripture /></div></StackCard>
 
-      <StackCard z={30}>
+      <StackCard z={14}>
         <div className="mx-auto max-w-6xl px-5" aria-labelledby="updates">
           <Title eyebrow="Services & updates" id="updates">{next ? 'Join us at the next service' : 'Services and updates'}</Title>
           {next && <Reveal><EventCard e={next} featured /></Reveal>}
@@ -58,13 +58,13 @@ export default function Home() {
         <div className="mt-10 text-center"><PressButton to="/events" variant="royal" size="lg">All services and events</PressButton></div>
       </StackCard>
 
-      <StackCard z={40} bg="bg-stone">
+      <StackCard z={16} bg="bg-stone">
         <div className="mx-auto max-w-6xl px-5"><Title eyebrow="Gallery" id="moments">Moments and messages</Title></div>
         <CardStack items={gallery} />
         <div className="mt-10 text-center"><PressButton to="/catalog" variant="royal" size="lg">Open the full gallery</PressButton></div>
       </StackCard>
 
-      <StackCard z={50} className="!pb-20">
+      <StackCard z={18} className="!pb-20">
         <div className="mx-auto max-w-6xl px-5" aria-labelledby="contact">
           <Title eyebrow="Contact" id="contact">Visit Ebenezer’s Place</Title>
           <div className="grid items-start gap-10 md:grid-cols-2">
